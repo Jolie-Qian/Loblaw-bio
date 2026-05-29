@@ -56,10 +56,10 @@ def compute_frequencies(df: pd.DataFrame) -> pd.DataFrame:
     freq = df.melt(
         id_vars=[c for c in df.columns if c not in CELL_TYPES],
         value_vars=CELL_TYPES,
-        var_name="cell_type",
-        value_name="cell_count",
+        var_name="population",
+        value_name="count",
     )
-    freq["percentage"] = (freq["cell_count"] / freq["total_count"] * 100).round(4)
+    freq["percentage"] = (freq["count"] / freq["total_count"] * 100).round(4)
     return freq
 
 
@@ -83,7 +83,7 @@ def run_part3(freq: pd.DataFrame) -> pd.DataFrame:
 
     results = []
     for ct in CELL_TYPES:
-        ct_data = subset[subset["cell_type"] == ct]
+        ct_data = subset[subset["population"] == ct]
         yes_vals = ct_data.loc[ct_data["response"] == "yes", "percentage"].values
         no_vals  = ct_data.loc[ct_data["response"] == "no",  "percentage"].values
         stat, p = mannwhitneyu(yes_vals, no_vals, alternative="two-sided")
@@ -115,7 +115,7 @@ def _make_boxplot(subset: pd.DataFrame) -> None:
     fig, axes = plt.subplots(1, len(CELL_TYPES), figsize=(16, 5))
 
     for ax, ct in zip(axes, CELL_TYPES):
-        ct_data = subset[subset["cell_type"] == ct]
+        ct_data = subset[subset["population"] == ct]
         groups = [
             ct_data.loc[ct_data["response"] == "yes", "percentage"].values,
             ct_data.loc[ct_data["response"] == "no",  "percentage"].values,
