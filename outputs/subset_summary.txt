@@ -1,0 +1,16 @@
+Q1 - samples per project:
+project  n_samples
+   prj1        384
+   prj3        272
+
+Q2 - subjects by response:
+response  n_subjects
+      no         325
+     yes         331
+
+Q3 - subjects by sex:
+sex  n_subjects
+  F         312
+  M         344
+
+Q4 - mean B-cell (melanoma males, time=0, miraclib, response=yes): 10401.28
