@@ -124,7 +124,7 @@ elif section == "Part 2: Cell-Type Frequencies":
     st.dataframe(
         filt[["sample", "subject", "project", "condition", "treatment",
               "response", "sample_type", "time_from_treatment_start",
-              "cell_type", "cell_count", "total_count", "percentage"]].head(500),
+              "population", "count", "total_count", "percentage"]].head(500),
         width="stretch",
         hide_index=True,
     )
