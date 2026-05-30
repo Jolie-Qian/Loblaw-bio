@@ -67,7 +67,7 @@ def compute_frequencies(df: pd.DataFrame) -> pd.DataFrame:
         var_name="population",
         value_name="count",
     )
-    freq["percentage"] = (freq["cell_count"] / freq["total_count"] * 100).round(4)
+    freq["percentage"] = (freq["count"] / freq["total_count"] * 100).round(4)
     return freq
 
 
