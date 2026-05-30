@@ -132,9 +132,9 @@ elif section == "Part 2: Cell-Type Frequencies":
 
     st.subheader("Median percentage by cell type")
     median_pct = (
-        filt.groupby("cell_type")["percentage"]
+        filt.groupby("population")["percentage"]
         .median().reset_index()
-        .rename(columns={"cell_type": "Cell Type", "percentage": "Median %"})
+        .rename(columns={"population": "Cell Type", "percentage": "Median %"})
     )
     median_pct["Cell Type"] = median_pct["Cell Type"].map(CELL_LABELS)
     st.dataframe(median_pct, width="stretch", hide_index=True)
